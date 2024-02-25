@@ -12,7 +12,7 @@ const ImageCarousel = ({ product }) => {
                 ? `/${product.img1}`
                 : product.img1
             }
-            className="d-block w-100 object-fit-cover px-3"
+            className="d-block w-100 object-fit-cover px-5"
             alt={product.name}
           />
         </div>
@@ -23,7 +23,7 @@ const ImageCarousel = ({ product }) => {
                 ? `/${product.img2}`
                 : product.img2
             }
-            className="d-block w-100 object-fit-cover px-3"
+            className="d-block w-100 object-fit-cover px-5"
             alt={product.name}
           />
         </div>
@@ -34,7 +34,7 @@ const ImageCarousel = ({ product }) => {
                 ? `/${product.img3}`
                 : product.img3
             }
-            className="d-block w-100 object-fit-cover px-3"
+            className="d-block w-100 object-fit-cover px-5"
             alt={product.name}
           />
         </div>
@@ -45,7 +45,7 @@ const ImageCarousel = ({ product }) => {
                 ? `/${product.img4}`
                 : product.img4
             }
-            className="d-block w-100 object-fit-cover px-3"
+            className="d-block w-100 object-fit-cover px-5"
             alt={product.name}
           />
         </div>
