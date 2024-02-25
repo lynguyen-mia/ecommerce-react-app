@@ -20,7 +20,15 @@ const RelatedProducts = ({ relatedProducts }) => {
             className={`d-flex flex-column`}
             onClick={() => onClickRelatedProducts(product["_id"])}
           >
-            <img src={product.img1} alt={product.name} className="img-fluid" />
+            <img
+              src={
+                product.img1.includes("public/images")
+                  ? `/${product.img1}`
+                  : product.img1
+              }
+              alt={product.name}
+              className="img-fluid"
+            />
             <div className="mt-3 fst-italic text-center">
               <p>
                 <strong>{product.name}</strong>
