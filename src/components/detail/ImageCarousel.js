@@ -1,7 +1,10 @@
 const ImageCarousel = ({ product }) => {
   return (
-    <div id="carouselExample" className="carousel carousel-dark slide">
-      <div className="carousel-inner">
+    <div
+      id="carouselExample"
+      className="carousel carousel-dark slide w-100 h-100"
+    >
+      <div className="carousel-inner h-100 d-flex align-items-center">
         <div className="carousel-item active">
           <img
             src={

@@ -45,7 +45,7 @@ const DetailPageContent = ({ product, relatedProducts }) => {
         </div>
 
         {/* CAROUSEL */}
-        <div>
+        <div className="d-flex align-items-center h-100">
           <ImageCarousel product={product} />
         </div>
 
