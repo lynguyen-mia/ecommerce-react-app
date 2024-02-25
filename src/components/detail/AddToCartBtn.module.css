@@ -1,0 +1,93 @@
+#addToCartBtn input[type="text"] {
+  width: 120px;
+  border-right: none;
+  flex-grow: 0;
+}
+
+#addToCartBtn input[type="number"] {
+  width: 60px;
+  border-left: none;
+  border-right: none;
+  flex-grow: 0;
+  text-align: center;
+}
+
+#addToCartBtn .quantity {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #dee2e6;
+  border-right: none;
+  font-size: 15px;
+}
+
+/* Add to cart success alert */
+#addToCartBtn .alert-container {
+  /* Fixed position */
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+}
+
+#addToCartBtn .order-alert {
+  padding: 8px 15px;
+  margin-bottom: 5px;
+  background-color: #12b886;
+  color: white;
+  z-index: 10;
+  animation: fromLeftToRight 0.3s ease-in;
+}
+
+@keyframes fromLeftToRight {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Add to cart button effect */
+#addToCartBtn .button {
+  position: relative;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  overflow: hidden;
+}
+
+#addToCartBtn .button:after {
+  content: "";
+  background: #71767b;
+  display: block;
+  position: absolute;
+  padding-top: 300%;
+  padding-left: 350%;
+  margin-left: -25px !important;
+  margin-top: -120%;
+  opacity: 0;
+  transition: all 1s;
+}
+
+#addToCartBtn .button:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s;
+}
+
+/* increment, decrement buttons */
+#addToCartBtn .input-button {
+  background-color: transparent;
+  border-left: none;
+  border-right: none;
+  border-top: 1px solid #dee2e6;
+  border-bottom: 1px solid #dee2e6;
+}
+
+/* Make arrows of input type number invisible */
+#addToCartBtn input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+/* Disable increment/decrement buttons when quantity <=1 or >= 999 */
+#addToCartBtn .disabled i::before {
+  color: #dee2e6 !important;
+}

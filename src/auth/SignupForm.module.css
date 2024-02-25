@@ -1,0 +1,47 @@
+.form-backdrop {
+  background-image: url("../images/banner1.jpg");
+  padding: 50px 0;
+  background-size: cover;
+}
+
+.form-container {
+  width: 480px;
+  padding: 40px 30px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px #bab6b6;
+}
+
+.form-container form {
+  margin-bottom: 40px;
+}
+
+.form-container input {
+  width: 100%;
+  padding: 15px 20px;
+  border: none;
+  outline: solid 1px #dee2e6;
+  margin-bottom: 1px;
+}
+
+.form-container input.invalid {
+  border: solid 1px rgb(243, 157, 157);
+  border-bottom: solid 1px rgb(243, 157, 157);
+  outline: none;
+}
+
+.form-container form ul li {
+  font-size: 14px;
+  font-style: italic;
+  text-align: start;
+  list-style: none;
+  color: #ff6b6b;
+}
+
+.form-container button {
+  font-size: 15px;
+}
+
+.form-container a {
+  color: #1c7ed6;
+}

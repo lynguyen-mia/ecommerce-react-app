@@ -1,0 +1,30 @@
+.cart-total__container {
+  background-color: #f8f9fa;
+  height: 330px;
+  padding: 50px 30px;
+  border-radius: 5px;
+}
+
+.cart-total__container .subtotal {
+  font-size: 16px;
+  color: #868e96;
+  text-align: end;
+  width: 65%;
+  word-wrap: break-word;
+}
+
+.cart-total__container .total {
+  font-size: 18px;
+  text-align: end;
+  width: 75%;
+  word-wrap: break-word;
+}
+
+.cart-total__container strong,
+.cart-total__container button {
+  font-size: 15px;
+}
+
+.cart-total__container input {
+  border: 1px solid rgb(229, 224, 224);
+}

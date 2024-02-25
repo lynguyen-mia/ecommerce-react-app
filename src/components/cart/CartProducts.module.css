@@ -1,0 +1,121 @@
+#cart-products .table {
+  overflow-x: auto;
+}
+
+#cart-products table {
+  min-width: 700px;
+}
+
+#cart-products table tr {
+  width: 100%;
+}
+
+#cart-products img {
+  max-height: 100px;
+  width: 100px;
+  display: flex;
+  margin-bottom: 10px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+#cart-products .product-header th {
+  background-color: #f8f9fa;
+  padding: 15px;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+#cart-products .product-name {
+  font-size: 16px;
+  font-weight: 700;
+  text-align: start;
+}
+
+#cart-products .number {
+  color: #868e96;
+  font-size: 15px;
+}
+
+#cart-products .actions {
+  font-size: 15px;
+  background-color: #f8f9fa;
+  padding: 15px 20px;
+}
+
+#cart-products .actions button {
+  background: transparent;
+  font-style: italic;
+  padding: 5px 15px;
+  border-radius: 1px;
+}
+
+#cart-products .actions button:hover {
+  color: white !important;
+  background-color: #495057;
+}
+
+#cart-products .actions i {
+  color: #868e96;
+  /* make arrows bolder */
+  -webkit-text-stroke: 1px;
+}
+
+/* Make arrows of input type number invisible */
+#cart-products input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+#cart-products input[type="number"] {
+  text-align: center;
+}
+
+#cart-products .input-button {
+  background-color: transparent;
+  border: none;
+}
+
+/* Disable increment/decrement buttons when quantity <=1 or >= 999 */
+#cart-products .disabled i::before {
+  color: #dee2e6 !important;
+}
+
+/* Change cart alert */
+#cart-products .alert-container {
+  /* Fixed position */
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+}
+
+#cart-products .order-alert {
+  padding: 8px 15px;
+  margin-bottom: 5px;
+  background-color: #12b886;
+  color: white;
+  z-index: 10;
+  animation: fromLeftToRight 0.3s ease-in;
+}
+
+/* Delete product alert */
+#cart-products .delete-alert {
+  padding: 8px 15px;
+  margin-bottom: 5px;
+  background-color: #dc3545;
+  color: white;
+  z-index: 10;
+  animation: fromLeftToRight 0.3s ease-in;
+  /* Fixed position */
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+}
+
+@keyframes fromLeftToRight {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
