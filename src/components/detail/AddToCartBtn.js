@@ -5,7 +5,28 @@ import { useNavigate } from "react-router-dom";
 const AddToCartBtn = ({ curProduct }) => {
   const navigate = useNavigate();
   const [quantityNum, setQuantityNum] = useState(1);
-  const [orderAlert, setOrderAlert] = useState([]);
+  // const [orderAlert, setOrderAlert] = useState([]);
+
+  const [orderAlert, dispatchAlert] = useReducer(alertReducer, []);
+
+  // useReducer
+  const alertReducer = (state, action) => {
+    switch (action.type) {
+      case "add":
+        return [...state, action.item];
+      case "remove":
+        return state.slice(1);
+      default:
+        return state;
+    }
+  };
+
+  const dispatchAlertFn = () => {
+    dispatchAlert({ type: "add", item: "Bạn đã thêm hàng thành công!" });
+    setTimeout(() => {
+      dispatchAlert({ type: "remove" });
+    }, 1500);
+  };
 
   // Clicking Add to cart
   async function onAddToCart() {
@@ -19,7 +40,7 @@ const AddToCartBtn = ({ curProduct }) => {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prodId: curProduct._id, quantity: quantity })
+        body: JSON.stringify({ prodId: curProduct._id, quantity: quantity }),
       }
     );
 
@@ -28,14 +49,15 @@ const AddToCartBtn = ({ curProduct }) => {
       window.alert("Please login first");
       return navigate("/login");
     }
-    setOrderAlert((prevState) => [
-      ...prevState,
-      "Bạn đã thêm hàng thành công!"
-    ]);
+    // setOrderAlert((prevState) => [
+    //   ...prevState,
+    //   "Bạn đã thêm hàng thành công!",
+    // ]);
 
-    setTimeout(() => {
-      setOrderAlert((prevState) => prevState.splice(1, 1));
-    }, 1500);
+    // setTimeout(() => {
+    //   setOrderAlert((prevState) => prevState.splice(1, 1));
+    // }, 1500);
+    dispatchAlertFn();
   }
 
   // Decrement, Increment buttons
@@ -110,6 +132,13 @@ const AddToCartBtn = ({ curProduct }) => {
       </button>
 
       {/* Order success alert */}
+      {/* <div className={styles["alert-container"]}>
+        {orderAlert.map((alert, index) => (
+          <div key={index} className={styles["order-alert"]}>
+            {alert}
+          </div>
+        ))}
+      </div> */}
       <div className={styles["alert-container"]}>
         {orderAlert.map((alert, index) => (
           <div key={index} className={styles["order-alert"]}>
