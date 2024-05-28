@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 const CartPage = () => {
   const [cartProducts, setCartProducts] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     try {

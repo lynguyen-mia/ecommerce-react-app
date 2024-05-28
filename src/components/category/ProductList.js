@@ -15,7 +15,7 @@ const ProductList = (props) => {
         const res = await fetch(
           `https://ecommerce-node-app-sfau.onrender.com/client/search-product/?search=${searchTerms}`,
           {
-            credentials: "include"
+            credentials: "include",
           }
         );
 
@@ -87,7 +87,7 @@ const ProductList = (props) => {
               onClick={onClickProduct.bind(null, product["_id"])}
             >
               <img
-                src={product.img1}
+                src={`/${product.img1}`}
                 alt={product.name}
                 className="object-fit-contain"
                 style={{ height: "254px", width: "auto" }}
