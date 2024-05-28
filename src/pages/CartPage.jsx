@@ -1,15 +1,18 @@
 import CartProducts from "../components/cart/CartProducts";
 import HeaderPage from "../components/category/HeaderPage";
 import CartTotal from "../components/cart/CartTotal";
+import Loader from "../components/loader/Loader";
 import { useEffect, useState } from "react";
 
 const CartPage = () => {
   const [cartProducts, setCartProducts] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     try {
       async function getCart() {
+        setIsLoading(true);
         const res = await fetch(
           "https://ecommerce-node-app-sfau.onrender.com/client/cart",
           {
@@ -26,6 +29,7 @@ const CartPage = () => {
         const filterResults = await results.data.filter((p) => p.product);
         console.log(filterResults);
         setCartProducts(filterResults);
+        setIsLoading(false);
       }
       getCart();
     } catch (err) {
@@ -52,10 +56,14 @@ const CartPage = () => {
       <h3 className="fs-5 mt-5 mb-3 fw-bolder">SHOPPING CART</h3>
       <div className="row">
         <div className="col-lg-8">
-          <CartProducts
-            listcart={cartProducts}
-            setCartProducts={setCartProducts}
-          />
+          {isLoading ? (
+            <CartProducts
+              listcart={cartProducts}
+              setCartProducts={setCartProducts}
+            />
+          ) : (
+            <Loader />
+          )}
         </div>
         <div className="col-lg-4">
           <CartTotal total={totalAmount} />
