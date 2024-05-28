@@ -80,26 +80,26 @@ const CartProducts = ({ listcart, setCartProducts }) => {
               {/* For each product, create a row */}
               {listcart.map((p) => {
                 console.log(listcart);
-                const total = Number(p.quantity) * Number(p.product.price);
+                const total = Number(p.quantity) * Number(p.product?.price);
                 return (
-                  <tr key={p.product._id} className="row">
+                  <tr key={p.product?._id} className="row">
                     {/* Images column*/}
                     <td className="col d-flex justify-content-center">
-                      <img src={p.product.img1} alt={p.product.name} />
+                      <img src={p.product?.img1} alt={p.product?.name} />
                     </td>
                     {/* Names column */}
                     <td className="col col-3">
                       <Link
-                        to={`/detail/${p.product._id}`}
+                        to={`/detail/${p.product?._id}`}
                         className={styles["product-name"]}
                       >
-                        {p.product.name}
+                        {p.product?.name}
                       </Link>
                     </td>
                     {/* Prices column */}
                     <td className="col">
                       <div className={styles.number}>
-                        {convertToVND(p.product.price)}
+                        {convertToVND(p.product?.price)}
                       </div>
                     </td>
                     {/* Quantity column */}
