@@ -14,7 +14,7 @@ const CartPage = () => {
         const res = await fetch(
           "https://ecommerce-node-app-sfau.onrender.com/client/cart",
           {
-            credentials: "include"
+            credentials: "include",
           }
         );
 
@@ -24,8 +24,11 @@ const CartPage = () => {
         }
 
         const results = await res.json();
+        const filterResults = results.data.filter((p) => p.product);
         // console.log(results.data);
-        setCartProducts(results.data);
+        // setCartProducts(results.data);
+        console.log(filterResults);
+        setCartProducts(filterResults);
       }
       getCart();
     } catch (err) {
