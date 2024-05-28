@@ -79,6 +79,7 @@ const CartProducts = ({ listcart, setCartProducts }) => {
             <tbody>
               {/* For each product, create a row */}
               {listcart.map((p) => {
+                console.log(listcart);
                 const total = Number(p.quantity) * Number(p.product?.price);
                 return (
                   <tr key={p.product._id} className="row">
