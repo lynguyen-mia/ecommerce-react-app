@@ -24,9 +24,9 @@ const CartPage = () => {
         }
 
         const results = await res.json();
-        const filterResults = await results.data.filter((p) => p.product);
-        console.log(filterResults);
-        setCartProducts(filterResults);
+        // const filterResults = await results.data.filter((p) => p.product);
+        console.log(results.data);
+        setCartProducts(results.data);
       }
       getCart();
     } catch (err) {
