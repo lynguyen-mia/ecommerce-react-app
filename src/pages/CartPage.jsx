@@ -23,7 +23,7 @@ const CartPage = () => {
         }
 
         const results = await res.json();
-        const filterResults = results.data.filter((p) => p.product);
+        const filterResults = await results.data.filter((p) => p.product);
         console.log(filterResults);
         setCartProducts(filterResults);
       }

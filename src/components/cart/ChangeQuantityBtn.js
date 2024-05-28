@@ -25,7 +25,7 @@ const ChangeQuantityBtn = ({ quantity, product, changeCartProducts }) => {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prodId: prodId, quantity: quantity })
+        body: JSON.stringify({ prodId: prodId, quantity: quantity }),
       }
     );
 
@@ -71,7 +71,6 @@ const ChangeQuantityBtn = ({ quantity, product, changeCartProducts }) => {
     const totalQuantity = Number(quantityNum) + 1;
     if (totalQuantity > 0 && totalQuantity < 1000) {
       setQuantityNum(totalQuantity);
-      // console.log(totalQuantity);
       updateQuantity(product._id, totalQuantity);
       dispatchAlertFn();
     }
