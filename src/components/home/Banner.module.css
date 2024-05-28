@@ -1,0 +1,44 @@
+.banner-img {
+  position: relative;
+}
+
+.banner-img .banner-text {
+  position: absolute;
+  top: 25%;
+  left: 8%;
+  width: 50%;
+}
+
+.banner-img .collection-text {
+  font-size: 0.8rem;
+  font-style: italic;
+  color: #868e96;
+  letter-spacing: 1.5px;
+  margin-bottom: 5px;
+}
+
+.banner-img .banner-text h3 {
+  font-size: 2.2rem;
+  font-style: italic;
+  letter-spacing: 1.5px;
+  margin-bottom: 15px;
+}
+
+/* MEDIA QUERY */
+@media (max-width: 768px) {
+  .banner-img {
+    height: 400px;
+  }
+
+  .banner-img .collection-text {
+    font-size: 0.7rem;
+  }
+
+  .banner-img .banner-text h3 {
+    font-size: 1.8rem;
+  }
+
+  .banner-img button {
+    font-size: 14px;
+  }
+}

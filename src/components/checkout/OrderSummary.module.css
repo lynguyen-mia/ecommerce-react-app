@@ -1,0 +1,30 @@
+.checkout_container {
+  background-color: #f8f9fa;
+  padding: 50px 40px;
+  margin-bottom: 50px;
+  border-radius: 5px;
+}
+
+.checkout_container .product {
+  font-size: 15px;
+}
+
+.checkout_container .product {
+  width: 55%;
+}
+
+.checkout_container .price {
+  width: 45%;
+  text-align: end;
+  font-size: 16px;
+  color: #868e96;
+}
+
+.checkout_container .total {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.checkout_container input {
+  border: 1px solid rgb(229, 224, 224);
+}

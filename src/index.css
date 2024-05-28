@@ -1,0 +1,66 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Nunito Sans", sans-serif;
+  color: #495057;
+  font-size: 17px;
+}
+
+a {
+  text-decoration: none;
+  color: #495057;
+}
+
+a:hover,
+a.active {
+  color: #dc3545 !important;
+}
+
+.footer-row a,
+.footer-row h3 {
+  color: white;
+  font-weight: 200;
+}
+
+::placeholder {
+  font-size: 15px !important;
+  color: #adb5bd !important;
+}
+
+.no-arrow::-webkit-inner-spin-button {
+  display: none;
+}
+
+#transactions td,
+#transactions a {
+  font-size: 14px;
+  color: #495057;
+}
+
+#order-detail thead td,
+#transactions thead td {
+  font-weight: 700;
+  background-color: rgb(248, 249, 250);
+  padding: 15px 0;
+}
+
+#order-detail .user-detail div {
+  color: #495057;
+  margin-top: 5px;
+}
+
+/* MEDIA QUERY */
+@media (max-width: 992px) {
+  .container {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}

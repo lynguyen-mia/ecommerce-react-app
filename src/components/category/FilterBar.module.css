@@ -1,0 +1,32 @@
+#filter-bar li {
+  padding: 6px 20px;
+  /* cursor: pointer; */
+}
+
+#filter-bar li:hover {
+  color: #f08c00;
+}
+
+#filter-bar .nav-category {
+  padding: 6px 20px;
+  margin-bottom: 0;
+}
+
+#filter-bar .active {
+  color: #f08c00;
+  font-weight: 700;
+}
+
+/* MEDIA QUERY */
+@media (max-width: 576px) {
+  #filter-bar ul {
+    height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  #filter-bar li,
+  #filter-bar p {
+    font-size: 15px;
+  }
+}

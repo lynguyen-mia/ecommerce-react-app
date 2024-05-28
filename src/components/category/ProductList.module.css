@@ -1,0 +1,16 @@
+.shop_product__list:hover {
+  opacity: 0.7;
+}
+
+#product-list select {
+  font-size: 15px;
+  color: #495057;
+}
+
+#product-list input {
+  width: 170px;
+}
+
+#search-box {
+  min-width: 250px;
+}
