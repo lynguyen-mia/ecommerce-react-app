@@ -10,7 +10,6 @@ const CartPage = () => {
   useEffect(() => {
     try {
       async function getCart() {
-        // fetch cart products
         const res = await fetch(
           "https://ecommerce-node-app-sfau.onrender.com/client/cart",
           {
@@ -25,8 +24,6 @@ const CartPage = () => {
 
         const results = await res.json();
         const filterResults = results.data.filter((p) => p.product);
-        // console.log(results.data);
-        // setCartProducts(results.data);
         console.log(filterResults);
         setCartProducts(filterResults);
       }
