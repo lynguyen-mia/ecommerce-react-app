@@ -1,13 +1,10 @@
-import { useState } from "react";
+import { useState, useReducer } from "react";
 import styles from "./AddToCartBtn.module.css";
 import { useNavigate } from "react-router-dom";
 
 const AddToCartBtn = ({ curProduct }) => {
   const navigate = useNavigate();
   const [quantityNum, setQuantityNum] = useState(1);
-  // const [orderAlert, setOrderAlert] = useState([]);
-
-  const [orderAlert, dispatchAlert] = useReducer(alertReducer, []);
 
   // useReducer
   const alertReducer = (state, action) => {
@@ -27,6 +24,8 @@ const AddToCartBtn = ({ curProduct }) => {
       dispatchAlert({ type: "remove" });
     }, 1500);
   };
+
+  const [orderAlert, dispatchAlert] = useReducer(alertReducer, []);
 
   // Clicking Add to cart
   async function onAddToCart() {
@@ -49,14 +48,6 @@ const AddToCartBtn = ({ curProduct }) => {
       window.alert("Please login first");
       return navigate("/login");
     }
-    // setOrderAlert((prevState) => [
-    //   ...prevState,
-    //   "Bạn đã thêm hàng thành công!",
-    // ]);
-
-    // setTimeout(() => {
-    //   setOrderAlert((prevState) => prevState.splice(1, 1));
-    // }, 1500);
     dispatchAlertFn();
   }
 
@@ -132,13 +123,6 @@ const AddToCartBtn = ({ curProduct }) => {
       </button>
 
       {/* Order success alert */}
-      {/* <div className={styles["alert-container"]}>
-        {orderAlert.map((alert, index) => (
-          <div key={index} className={styles["order-alert"]}>
-            {alert}
-          </div>
-        ))}
-      </div> */}
       <div className={styles["alert-container"]}>
         {orderAlert.map((alert, index) => (
           <div key={index} className={styles["order-alert"]}>

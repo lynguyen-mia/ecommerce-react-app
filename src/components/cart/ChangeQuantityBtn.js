@@ -34,10 +34,14 @@ const ChangeQuantityBtn = ({ quantity, product, changeCartProducts }) => {
       return window.location.replace("/login");
     }
 
-    if (res.ok) {
-      const result = await res.json();
-      changeCartProducts(result.data);
+    const result = await res.json();
+
+    if (res.status === 404) {
+      setQuantityNum((prev) => Number(result.stock));
+      window.alert(`The maximum quantity in stock now is ${result.stock}`);
     }
+
+    changeCartProducts(result.data);
   }
 
   const dispatchAlertFn = () => {
