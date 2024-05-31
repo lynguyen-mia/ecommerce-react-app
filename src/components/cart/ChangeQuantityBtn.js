@@ -29,18 +29,15 @@ const ChangeQuantityBtn = ({ quantity, product, changeCartProducts }) => {
       }
     );
 
+    const result = await res.json();
     if (res.status === 401) {
       window.alert("Your session has expired, please log in again");
       return window.location.replace("/login");
     }
-
-    const result = await res.json();
-
     if (res.status === 404) {
-      setQuantityNum((prev) => Number(result.stock));
+      setQuantityNum(Number(result.stock));
       window.alert(`The maximum quantity in stock now is ${result.stock}`);
     }
-
     changeCartProducts(result.data);
   }
 

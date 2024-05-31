@@ -1,11 +1,14 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { getVariable } from "../../utils/getLocalVars";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import openSocket from "socket.io-client";
 
 const NavBar = () => {
+  const socket = openSocket("https://ecommerce-node-app-sfau.onrender.com");
   const navigate = useNavigate();
-  // Get current user data
   const user = getVariable("user");
+  const room = localStorage.getItem("roomNum");
+  const [roomNum, setRoomNum] = useState(room || null);
 
   // Logout function
   async function onLogout() {
@@ -13,10 +16,9 @@ const NavBar = () => {
       await fetch(
         "https://ecommerce-node-app-sfau.onrender.com/client/logout",
         {
-          credentials: "include"
+          credentials: "include",
         }
       );
-      // Delete data in local storage
       localStorage.removeItem("user");
       return navigate("/");
     } catch (err) {
@@ -31,11 +33,12 @@ const NavBar = () => {
         const res = await fetch(
           "https://ecommerce-node-app-sfau.onrender.com/client/check-session",
           {
-            credentials: "include"
+            credentials: "include",
           }
         );
         if (res.status === 401) {
           localStorage.removeItem("user");
+          socket.emit("endChat", { roomId: roomNum });
         }
       }
       checkSession();

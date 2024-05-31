@@ -5,7 +5,6 @@ import { getVariable } from "../../utils/getLocalVars";
 
 const LiveChat = () => {
   const socket = openSocket("https://ecommerce-node-app-sfau.onrender.com");
-
   const messageRef = useRef();
   const iconRef = useRef(null);
   const chatBoxRef = useRef(null);
@@ -14,9 +13,41 @@ const LiveChat = () => {
 
   // Get current user details
   const curUser = getVariable("user");
-
   const room = localStorage.getItem("roomNum");
   const [roomNum, setRoomNum] = useState(room || null);
+
+  async function fetchRoomId() {
+    const res = await fetch(
+      `https://ecommerce-node-app-sfau.onrender.com/client/chat/roomid?id=${roomNum}`,
+      {
+        credentials: "include",
+      }
+    );
+    if (res.status === 401) {
+      window.alert("Your session has expired, please log in again");
+      return window.location.replace("/login");
+    }
+    const results = await res.json();
+    const roomId = results.roomId;
+    setRoomNum(roomId);
+    localStorage.setItem("roomNum", roomId);
+  }
+
+  async function fetchRoom() {
+    const res = await fetch(
+      `https://ecommerce-node-app-sfau.onrender.com/client/chat/room?id=${roomNum}`,
+      {
+        credentials: "include",
+      }
+    );
+    const results = await res.json();
+    // Fetch previous conversation
+    const messages = [];
+    results.room?.messages?.forEach((messObj) => {
+      messages.push(messObj);
+    });
+    setMessages(messages);
+  }
 
   useEffect(() => {
     // Listen to events from server
@@ -46,44 +77,6 @@ const LiveChat = () => {
 
   useEffect(() => {
     if (openLiveChat) {
-      async function fetchRoomId() {
-        const res = await fetch(
-          `https://ecommerce-node-app-sfau.onrender.com/client/chat/roomid?id=${roomNum}`,
-          {
-            credentials: "include"
-          }
-        );
-
-        if (res.status === 401) {
-          window.alert("Your session has expired, please log in again");
-          return window.location.replace("/login");
-        }
-
-        const results = await res.json();
-        const roomId = results.roomId;
-        // console.log(roomId);
-        setRoomNum(roomId);
-
-        localStorage.setItem("roomNum", roomId);
-      }
-
-      async function fetchRoom() {
-        const res = await fetch(
-          `https://ecommerce-node-app-sfau.onrender.com/client/chat/room?id=${roomNum}`,
-          {
-            credentials: "include"
-          }
-        );
-
-        const results = await res.json();
-        // Fetch previous conversation
-        const messages = [];
-        results.room?.messages?.forEach((messObj) => {
-          messages.push(messObj);
-        });
-        setMessages(messages);
-      }
-
       if (!roomNum) {
         // If there's no room in local storage, fetch 1 room ID from server
         fetchRoomId();
@@ -111,11 +104,25 @@ const LiveChat = () => {
         ? {
             userId: roomNum,
             name: "visitor",
-            role: "customer"
+            role: "customer",
           }
-        : { userId: curUser.userId, name: curUser.name, role: "customer" }
+        : { userId: curUser.userId, name: curUser.name, role: "customer" },
     });
     messageRef.current.value = "";
+  }
+
+  function onEndChat() {
+    socket.emit("endChat", { roomId: roomNum });
+  }
+
+  function onShowEndChatAlert(e) {
+    const alertBox = e.target.closest(".chat_box").querySelector(".endChat");
+    alertBox.classList.remove(`${styles["hide_alert"]}`);
+  }
+
+  function onContinueChat(e) {
+    const alertBox = e.target.closest(".endChat");
+    alertBox.classList.add(`${styles["hide_alert"]}`);
   }
 
   // Close live chat when clicking outside
@@ -141,13 +148,18 @@ const LiveChat = () => {
         ref={iconRef}
       ></i>
       {openLiveChat && (
-        <div className={styles["chat_box"]} ref={chatBoxRef}>
+        <div className={`chat_box ${styles["chat_box"]}`} ref={chatBoxRef}>
           <div>
             <div className="d-flex justify-content-between">
               <div>
                 <strong>Customer support</strong>
               </div>
-              <div className={styles["chat_box__subtitle"]}>Let's Chat App</div>
+              <div
+                className={styles["chat_box__endChat"]}
+                onClick={onShowEndChatAlert}
+              >
+                End Chat
+              </div>
             </div>
             <hr />
 
@@ -156,6 +168,27 @@ const LiveChat = () => {
                 id={styles["messages-container"]}
                 className="d-flex flex-column gap-2 mb-2 pe-3"
               >
+                {/* End chat alert */}
+                <div
+                  className={`endChat ${styles["alert_endChat"]} ${styles["hide_alert"]}`}
+                >
+                  <div className="mb-3 text-white text-center">
+                    Do you want to end this chat? Chat history will be deleted.
+                  </div>
+                  <div className={styles["endChat_btns"]}>
+                    <button className="btn bg-light" onClick={onEndChat}>
+                      Yes
+                    </button>
+                    <button
+                      className="btn text-white bg-dark"
+                      onClick={onContinueChat}
+                    >
+                      No
+                    </button>
+                  </div>
+                </div>
+
+                {/* Chat box content */}
                 {messages &&
                   messages.map((mess, index) => {
                     return (
